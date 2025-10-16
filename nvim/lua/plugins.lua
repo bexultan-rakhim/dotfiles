@@ -44,32 +44,10 @@ return require("lazy").setup({
         end
     },
     -- }}}
-
-    -- {{{ Search
-    -- {
-    --     "https://github.com/ibhagwan/fzf-lua",
-    --     dependencies = {
-    --         "https://github.com/elanmed/fzf-lua-frecency.nvim",
-    --     },
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("fzf-lua").setup({
-    --             "max-perf",
-    --             winopts = {
-    --                 height = 0.5,
-    --                 width = 1,
-    --                 row = 1,
-    --             },
-    --         })
-    --         require("fzf-lua").register_ui_select()
-    --         require("fzf-lua-frecency").setup({
-    --             display_score = false,
-    --         })
-    --     end,
-    -- },
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
+        event = "VeryLazy",
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
         require('telescope').setup({

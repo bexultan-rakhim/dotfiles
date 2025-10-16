@@ -12,12 +12,10 @@ map("n", "<Leader><Leader>", function()
         cwd_only = true,
     })
 end)
-map("n", "<Leader>fg", "<Cmd>FzfLua git_files<CR>")
 map("n", "-", "<Cmd>Oil<CR>")
 map("n", "_", "<Cmd>Oil .<CR>")
 
 -- Buffers
-map("n", "<Leader>,", "<Cmd>FzfLua buffers<CR>")
 map("n", "<Leader>bd", function()
     require("mini.bufremove").delete()
 end)
@@ -35,8 +33,6 @@ map("n", "<Leader>ghb", "<Cmd>silent !gh browse %<CR>")
 map("n", "<Leader>ghr", "<Cmd>silent !gh repo view --web<CR>")
 
 -- Search and replace
-map("n", "<Leader>/", "<Cmd>FzfLua grep_project<CR>")
-map("n", "<Leader>?", "<Cmd>FzfLua live_grep<CR>")
 map("n", "<Leader>sr", function()
     require("grug-far").open({
         prefills = {
