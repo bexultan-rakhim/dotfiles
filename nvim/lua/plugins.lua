@@ -110,53 +110,7 @@ return require("lazy").setup({
         end,
     },
     -- }}}
-
-    -- {{{ IntelliSense
-    -- {
-    --     "https://github.com/Saghen/blink.cmp",
-    --     dependencies = {
-    --         "https://github.com/neovim/nvim-lspconfig",
-    --     },
-    --     version = "1.*",
-    --     event = "VeryLazy",
-    --     config = function()
-    --        vim.lsp.enable({
-    --            "gopls",
-    --            "lua_ls",
-    --            "nil_ls",
-    --            "pyright",
-    --            "rust_analyzer",
-    --            "terraformls",
-    --            "ts_ls",
-    --        })
-
-    --        vim.lsp.config("rust_analyzer", {
-    --            settings = {
-    --                ["rust-analyzer"] = {
-    --                    procMacro = {
-    --                        ignored = {
-    --                            leptos_macro = {
-    --                                "server",
-    --                            },
-    --                        },
-    --                    },
-    --                },
-    --            },
-    --        })
-
-    --        require("blink.cmp").setup({
-    --            keymap = {
-    --                preset = "enter",
-    --            },
-    --            cmdline = {
-    --                keymap = {
-    --                    preset = "super-tab",
-    --                },
-    --            },
-    --        })
-    --    end,
-    --},
-    {
+   {
         "mason-org/mason.nvim",
         opts = {}
     },
