@@ -50,3 +50,5 @@ end)
 map("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Toggle File Explorer" })
 
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to Definition' })
+map("n", "<Leader>do", vim.diagnostic.open_float, { noremap = true, silent = true })
+
