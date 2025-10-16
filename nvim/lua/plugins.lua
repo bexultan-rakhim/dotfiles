@@ -160,6 +160,13 @@ return require("lazy").setup({
         "mason-org/mason.nvim",
         opts = {}
     },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+    },
     -- TODO refactor when Tree-sitter is stable and merged to nvim core
     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/4767
     {
