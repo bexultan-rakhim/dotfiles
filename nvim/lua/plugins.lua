@@ -60,8 +60,6 @@ return require("lazy").setup({
                 },
             }
         })
-        -- Map leader + f (or Space + f) to find files, similar to VSCode's search
-        map("n", "<leader>f", ":Telescope find_files<CR>", { desc = "Find Files (Fuzzy Search)" })
         end,
     },
     -- {

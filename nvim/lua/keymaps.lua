@@ -32,7 +32,8 @@ map("n", "<Leader>gl", "<Cmd>Git log<CR>")
 map("n", "<Leader>ghb", "<Cmd>silent !gh browse %<CR>")
 map("n", "<Leader>ghr", "<Cmd>silent !gh repo view --web<CR>")
 
--- Search and replace
+-- Search and replace)
+map("n", "<leader>f", ":Telescope find_files<CR>", { desc = "Find Files (Fuzzy Search)" })
 map("n", "<Leader>sr", function()
     require("grug-far").open({
         prefills = {
