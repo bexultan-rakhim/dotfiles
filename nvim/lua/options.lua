@@ -14,3 +14,4 @@ vim.opt.relativenumber = true -- show relative line number
 vim.opt.signcolumn = "yes"    -- always show the sign column, otherwise it would shift the text each time
 vim.opt.scrolloff = 3         -- minimal number of screen lines to keep above and below the cursor
 vim.opt.laststatus = 0        -- disable statusline
+vim.opt.clipboard = "unnamedplus"

@@ -85,7 +85,7 @@ return require("lazy").setup({
         end,
     },
     -- }}}
-   {
+    {
         "mason-org/mason.nvim",
         opts = {}
     },
@@ -95,6 +95,40 @@ return require("lazy").setup({
         dependencies = {
             "neovim/nvim-lspconfig",
         },
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip", 
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-buffer", 
+            "hrsh7th/cmp-path",  
+        },
+        opts = function()
+            local cmp = require("cmp")
+            local luasnip = require("luasnip")
+            return {
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                    { name = "buffer" },
+                    { name = "path" },
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-k>"] = cmp.mapping.select_prev_item(),
+                    ["<C-j>"] = cmp.mapping.select_next_item(),
+                    ["<C-p>"] = cmp.mapping.complete(),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                }),
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
+            }
+        end,
     },
     -- TODO refactor when Tree-sitter is stable and merged to nvim core
     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/4767
