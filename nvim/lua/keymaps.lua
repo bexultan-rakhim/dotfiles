@@ -28,6 +28,7 @@ map("n", "<Leader>ghr", "<Cmd>silent !gh repo view --web<CR>")
 
 -- Search and replace)
 map("n", "<leader>f", ":Telescope find_files<CR>", { desc = "Find Files (Fuzzy Search)" })
+map("n", "<Leader>fl", ":Telescope live_grep<CR>", { desc = "grep within files (Fuzzy Search)" })
 map("n", "<Leader>sr", function()
     require("grug-far").open({
         prefills = {
