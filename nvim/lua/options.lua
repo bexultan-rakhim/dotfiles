@@ -15,3 +15,17 @@ vim.opt.signcolumn = "yes"    -- always show the sign column, otherwise it would
 vim.opt.scrolloff = 3         -- minimal number of screen lines to keep above and below the cursor
 vim.opt.laststatus = 0        -- disable statusline
 vim.opt.clipboard = "unnamedplus"
+if vim.env.SSH_TTY then
+    vim.g.clipboard = {
+        name = 'OSC 52',
+        copy = {
+            ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+            ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+        },
+        paste = {
+            ['+'] = function() return vim.split(vim.fn.getreg('+'), '\\n') end,
+            ['*'] = function() return vim.split(vim.fn.getreg('*'), '\\n') end,
+        },
+    }
+    vim.opt.clipboard:append('unnamedplus')
+end
