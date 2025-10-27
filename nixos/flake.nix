@@ -16,6 +16,15 @@
 	  ./common/configuration.nix
 	];
       };
+
+      "desktop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+	  ./hosts/desktop/hardware-configuration.nix
+	  ./hosts/desktop/default.nix
+	  ./common/configuration.nix
+	];
+      };
     };
   };
 }
