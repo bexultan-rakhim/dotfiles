@@ -48,6 +48,20 @@
 	  ./hosts/desktop/hardware-configuration.nix
 	  ./hosts/desktop/default.nix
 	  ./common/configuration.nix
+	  home-manager.nixosModules.home-manager
+	  ({ pkgs, ...}: {
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.useUserPackages = true;
+	    home-manager.users."bex" = {
+	      imports = [
+		(import ./common/home.nix {
+		  inherit pkgs;
+	          inherit plasma-manager;
+		})
+	      ];
+	      home.stateVersion = "25.05";
+	    };
+	  })
 	];
       };
     };
