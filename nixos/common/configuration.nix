@@ -71,6 +71,11 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  fonts.packages = with pkgs; [
+    inter
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -93,8 +98,8 @@
   # Install firefox.
   programs = {
     firefox.enable = true;
-    steam.enable = true;
-    gamemode.enable = true;
+    # steam.enable = true;
+    # gamemode.enable = true;
   };
 
   # Allow unfree packages

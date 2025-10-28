@@ -15,4 +15,9 @@
     open = false; 
     nvidiaSettings = true;
   };
+
+  programs = {
+    steam.enable = true;
+    gamemode.enable = true;
+  };
 }
