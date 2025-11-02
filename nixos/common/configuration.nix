@@ -49,8 +49,9 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "jp";
+    layout = "jp,kz";
     variant = "OADG109A";
+    options = "grp:win_space_toggle";
   };
 
   # Enable CUPS to print documents.
@@ -111,6 +112,13 @@
     vim 
     wget
     git
+    vlc
+    krita
+    htop
+    libreoffice-qt
+    hunspell
+    hunspellDicts.uk_UA
+    hunspellDicts.th_TH  
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

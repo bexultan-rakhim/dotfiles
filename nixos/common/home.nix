@@ -6,7 +6,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    sweet
+    sweet-nova
     tela-icon-theme
     # kwin-effects-geometry-change
   ];
@@ -24,7 +24,7 @@
       };
     };
 
-    workspace.lookAndFeel = "Sweet";
+    workspace.lookAndFeel = "com.github.eliverlara.sweet";
     workspace.iconTheme = "Tela-purple";    
     
     kwin = {

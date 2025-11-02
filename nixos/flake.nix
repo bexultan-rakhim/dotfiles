@@ -15,55 +15,48 @@
     };
   };
 
-  outputs = {self, nixpkgs, home-manager, plasma-manager, ...}@inputs: {
-    
-    nixosConfigurations = {
-      "mac-virtual" = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-	specialArgs = {inherit inputs;};
-        modules = [
-	  ./hosts/mac-virtual/hardware-configuration.nix
-	  ./hosts/mac-virtual/default.nix
-	  ./common/configuration.nix
-	  home-manager.nixosModules.home-manager
-	  ({ pkgs, ...}: {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users."bex" = {
-	      imports = [
-		(import ./common/home.nix {
-		  inherit pkgs;
-	          inherit plasma-manager;
-		})
-	      ];
-	      home.stateVersion = "25.05";
-	    };
-	  })
-	];
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    plasma-manager,
+    flake-utils,
+    ... }@inputs:
+  let
+    hostConfigurations = {
+      "desktop"     = { system = "x86_64-linux"; };
+      "mac-virtual" = { system = "aarch64-linux"; };
+    };
 
-      "desktop" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-	  ./hosts/desktop/hardware-configuration.nix
-	  ./hosts/desktop/default.nix
-	  ./common/configuration.nix
-	  home-manager.nixosModules.home-manager
-	  ({ pkgs, ...}: {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users."bex" = {
-	      imports = [
-		(import ./common/home.nix {
-		  inherit pkgs;
-	          inherit plasma-manager;
-		})
-	      ];
-	      home.stateVersion = "25.05";
-	    };
-	  })
-	];
+    commonModule = inputs: {config, pkgs, ...}: {
+      imports = [
+	./common/configuration.nix
+      ];
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users."bex" = {
+        imports = [
+          (import ./common/home.nix {
+            inherit pkgs;
+            plasma-manager = inputs.plasma-manager;
+          })
+        ];
+        home.stateVersion = "25.05";
       };
     };
+
+    mkHost = hostName: {system}:
+      nixpkgs.lib.nixosSystem {
+	inherit system;
+        specialArgs = { inherit inputs; };
+	modules = [
+	  inputs.home-manager.nixosModules.home-manager
+	  (commonModule inputs)
+	  (./hosts + "/${hostName}/hardware-configuration.nix")
+	  (./hosts + "/${hostName}/default.nix")
+	];
+      };
+  in {
+    nixosConfigurations = nixpkgs.lib.mapAttrs mkHost hostConfigurations;
   };
 }
