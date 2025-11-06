@@ -11,27 +11,15 @@ vim.opt.rtp:prepend(lazypath)
 return require("lazy").setup({
     -- {{{ UI
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000, -- Load color scheme early
+        "craftzdog/solarized-osaka.nvim",
+        lazy = false,
+        priority = 1000,
         config = function()
-        -- 5.1. Color Scheme Configuration
-        require("catppuccin").setup({
-            flavour = "mocha", -- Explicitly set the dark 'mocha' flavor
-            background = {
-                light = "latte",
-                dark = "mocha",
-            },
-            transparent_background = false,
-            term_colors = true,
-            styles = {
-                comments = { "italic" },
-                functions = { "bold" },
-                variables = {},
-            },
-        })
-        vim.cmd.colorscheme("catppuccin")
-        end
+            require("solarized-osaka").setup({
+                  transparent = false, -- Enable this to disable setting the background color
+            })
+            vim.cmd[[colorscheme solarized-osaka]]
+        end,
     },
     {
         "toppair/peek.nvim",
