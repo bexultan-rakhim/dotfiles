@@ -204,38 +204,10 @@ return require("lazy").setup({
         end,
     },
     {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree", -- Use cmd for lazy loading
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
-    config = function()
-      -- 5.3. Neo-tree (File Explorer) Configuration
-      require("neo-tree").setup({
-        window = {
-          position = "left",
-          width = 35,
-          mapping_options = {
-            noremap = true,
-            nowait = true,
-          },
-        },
-        filesystem = {
-          filtered_items = {
-            hide_dotfiles = false,
-            hide_hidden = false,
-          }
-        },
-        default_component_configs = {
-          git_status = {
-            symbols = {
-              added = "✚",
-              modified = "",
-              deleted = "✖",
-              untracked = "⋆",
-            },
-          },
-        }
-      })
-    end,
-  },
+        "nvim-treesitter/nvim-treesitter",
+        branch = 'master',
+        lazy = false,
+        build = ":TSUpdate",
+    },
     -- }}}
 })
