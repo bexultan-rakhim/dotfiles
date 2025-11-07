@@ -46,3 +46,10 @@ map("n", "<Leader>do", vim.diagnostic.open_float, { noremap = true, silent = tru
 
 map("n", "<Leader>fd", ":Lspsaga finder def<CR>", { desc = "Find definition" })
 map("n", "<Leader>fi", ":Lspsaga finder def+imp<CR>", { desc = "Find implementation" })
+
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
