@@ -87,12 +87,30 @@ return require("lazy").setup({
         "mason-org/mason.nvim",
         opts = {}
     },
+
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {},
         dependencies = {
             "neovim/nvim-lspconfig",
         },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {"clangd"},
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            vim.lsp.config("clangd", {
+                capabilities = capabilities
+            })
+            vim.keymap.set("n", "I", vim.lsp.buf.hover, {})
+            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+        end,
     },
     {
         "hrsh7th/nvim-cmp",
@@ -208,6 +226,15 @@ return require("lazy").setup({
         branch = 'master',
         lazy = false,
         build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                ensure_installed = {"c", "cpp"},
+                auto_install = true,
+                highlight = {enable = true },
+                indent = { enable = true },
+
+            })
+        end
     },
     {
         'nvimdev/lspsaga.nvim',
