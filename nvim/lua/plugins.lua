@@ -194,7 +194,7 @@ return require("lazy").setup({
             require("toggleterm").setup({
                 size = 20,
                 open_mapping = [[<C-t>]],
-                direction = "horizontal",
+                direction = "float",
                 shade_terminals = true,
                 start_in_insert = true,
                 float_opts = {
