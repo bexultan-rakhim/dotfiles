@@ -14,6 +14,7 @@
     open = false; 
     nvidiaSettings = true;
   };
+  hardware.nvidia-container-toolkit.enable = true;
 
   programs = {
     steam.enable = true;

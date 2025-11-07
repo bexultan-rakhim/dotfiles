@@ -49,8 +49,8 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "jp,kz";
-    variant = "OADG109A";
+    layout = "us,kz";
+    variant = ",";
     options = "grp:win_space_toggle";
   };
 
@@ -119,6 +119,12 @@
     hunspell
     hunspellDicts.uk_UA
     hunspellDicts.th_TH  
+    stdenv.cc.cc.lib
+    python313
+    ripgrep
+    lua5_1
+    luarocks
+    neovim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
