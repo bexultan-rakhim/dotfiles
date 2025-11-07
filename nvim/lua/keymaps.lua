@@ -44,3 +44,5 @@ map("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Toggle File Explorer" })
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to Definition' })
 map("n", "<Leader>do", vim.diagnostic.open_float, { noremap = true, silent = true })
 
+map("n", "<Leader>fd", ":Lspsaga finder def<CR>", { desc = "Find definition" })
+map("n", "<Leader>fi", ":Lspsaga finder def+imp<CR>", { desc = "Find implementation" })
