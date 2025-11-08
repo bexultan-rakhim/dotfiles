@@ -116,6 +116,7 @@
     krita
     htop
     libreoffice-qt
+    telegram-desktop
     hunspell
     hunspellDicts.uk_UA
     hunspellDicts.th_TH  

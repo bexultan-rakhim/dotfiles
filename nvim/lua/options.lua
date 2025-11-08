@@ -4,6 +4,7 @@ vim.opt.smartindent = true    -- make indenting smarter again
 vim.opt.splitbelow = true     -- force all horizontal splits to go below current window
 vim.opt.splitright = true     -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false      -- creates a swapfile
+vim.opt.autoindent = true     -- Indent automatically
 vim.opt.undofile = true       -- enable persistent undo
 vim.opt.expandtab = true      -- convert tabs to spaces
 vim.opt.shiftwidth = 4        -- the number of spaces inserted for each indentation
@@ -15,6 +16,7 @@ vim.opt.signcolumn = "yes"    -- always show the sign column, otherwise it would
 vim.opt.scrolloff = 3         -- minimal number of screen lines to keep above and below the cursor
 vim.opt.laststatus = 0        -- disable statusline
 vim.opt.clipboard = "unnamedplus"
+vim.opt.wrap = true           -- wrap lines
 if vim.env.SSH_TTY then
     vim.g.clipboard = {
         name = 'OSC 52',
