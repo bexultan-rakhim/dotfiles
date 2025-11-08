@@ -52,4 +52,12 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 end
 
+vim.keymap.set('i', '<C-h>', '<Left>', {
+  desc = 'insert mode, Move left'
+})
+
+vim.keymap.set('i', '<C-l>', '<Right>', {
+  desc = 'insert mode, Move right '
+})
+
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

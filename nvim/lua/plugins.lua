@@ -94,19 +94,27 @@ return require("lazy").setup({
         dependencies = {
             "neovim/nvim-lspconfig",
         },
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {"clangd"},
-            })
-        end,
     },
     {
         "neovim/nvim-lspconfig",
         config = function()
+
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             vim.lsp.config("clangd", {
                 capabilities = capabilities
+            })
+            vim.lsp.enable("rust-analyzer")
+            vim.lsp.config("rust-analyzer", {
+                cmd = { "rust-analyzer" },
+                capabilities = capabilities,
+                settings = {
+                    ['rust-analyzer'] = {
+                        checkOnSave = {
+                            command = "clippy",
+                        },
+                    },
+                },
             })
             vim.keymap.set("n", "I", vim.lsp.buf.hover, {})
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
