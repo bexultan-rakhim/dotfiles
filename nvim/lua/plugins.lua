@@ -100,7 +100,8 @@ return require("lazy").setup({
         config = function()
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
+            
+            vim.lsp.enable("clangd")
             vim.lsp.config("clangd", {
                 capabilities = capabilities
             })
@@ -112,6 +113,18 @@ return require("lazy").setup({
                     ['rust-analyzer'] = {
                         checkOnSave = {
                             command = "clippy",
+                        },
+                    },
+                },
+            })
+            vim.lsp.enable("nixd")
+            vim.lsp.config("nixd", {
+                cmd = { "nixd"},
+                capabilities = capabilities,
+                settings = {
+                    ["nixd"] = {
+                        nixpkgs = {
+                            expr = "import <nixpkgs> { }",
                         },
                     },
                 },
