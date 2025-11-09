@@ -103,12 +103,14 @@ return require("lazy").setup({
             
             vim.lsp.enable("clangd")
             vim.lsp.config("clangd", {
-                capabilities = capabilities
+                filetypes = { "c", "cpp"},
+                capabilities = capabilities,
             })
             vim.lsp.enable("rust-analyzer")
             vim.lsp.config("rust-analyzer", {
                 cmd = { "rust-analyzer" },
                 capabilities = capabilities,
+                filetypes = { "rust" },
                 settings = {
                     ['rust-analyzer'] = {
                         checkOnSave = {
