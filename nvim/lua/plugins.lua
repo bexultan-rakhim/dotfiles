@@ -79,6 +79,9 @@ return require("lazy").setup({
                         return name == ".."
                     end,
                 },
+                keymaps = {
+                    ["<C-t>"] = "<CMD>ToggleTerm<CR>",
+                },
             })
         end,
     },
