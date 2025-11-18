@@ -134,6 +134,14 @@ return require("lazy").setup({
                     },
                 },
             })
+            if vim.fn.executable("gopls") == 1 then
+                vim.lsp.enable("gopls")
+                vim.lsp.config("gopls", {
+                    cmd = {"gopls"},
+                    capabilities = capabilities,
+                    filetypes = {"go", "gomod", "gowork", "gotmpl"},
+                })
+            end
             vim.keymap.set("n", "I", vim.lsp.buf.hover, {})
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
         end,
@@ -170,6 +178,12 @@ return require("lazy").setup({
                     end,
                 },
             }
+        end,
+    },
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup({})
         end,
     },
     {
@@ -254,8 +268,8 @@ return require("lazy").setup({
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"c", "cpp"},
-                auto_install = true,
+                -- ensure_installed = {"c", "cpp"},
+                -- auto_install = true,
                 highlight = {enable = true },
                 indent = { enable = true },
 

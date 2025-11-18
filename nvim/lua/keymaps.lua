@@ -42,8 +42,8 @@ end)
 map("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Toggle File Explorer" })
 
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to Definition' })
-map("n", "<Leader>do", vim.diagnostic.open_float, { noremap = true, silent = true })
-
+--map("n", "<Leader>do", vim.diagnostic.open_float, { noremap = true, silent = true })
+map("", "<Leader>l", require("lsp_lines").toggle, { desc = "Toggle lsp_lines"})
 map("n", "<Leader>fd", ":Lspsaga finder def<CR>", { desc = "Find definition" })
 map("n", "<Leader>fi", ":Lspsaga finder def+imp<CR>", { desc = "Find implementation" })
 
@@ -52,12 +52,7 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 end
 
-vim.keymap.set('i', '<C-h>', '<Left>', {
-  desc = 'insert mode, Move left'
-})
-
-vim.keymap.set('i', '<C-l>', '<Right>', {
-  desc = 'insert mode, Move right '
-})
-
+map('i', '<C-h>', '<Left>', { desc = 'insert mode, Move left' })
+map('i', '<C-l>', '<Right>', { desc = 'insert mode, Move right ' })
+map('i', 'jj', '<Esc>', {noremap = false })
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
