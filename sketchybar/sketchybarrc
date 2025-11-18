@@ -1,0 +1,126 @@
+BLUE=0xFF1E6E77
+ORANGE=0xFFCC7B6E
+PINK=0xFFD7448A
+RED=0xFFCE3A5B
+GREEN=0xFF638989
+
+# main bar & defaults
+sketchybar --bar height=54        \
+                 margin=12        \
+                 y_offset=0       \
+                 padding_left=0   \
+                 padding_right=0  \
+                 color=0x00000000
+
+sketchybar --default updates=when_shown                             \
+                     icon.font="Liga SFMono Nerd Font:Normal:14.0"  \
+                     icon.color=0xFFFFFFFF                          \
+                     label.font="Liga SFMono Nerd Font:Normal:14.0" \
+                     background.color=0x00000000                    \
+                     y_offset=0
+
+sketchybar --add event aerospace_workspace_change
+
+# ~~ left items ~~
+sketchybar --add item current_space left \
+           --set current_space \
+                 icon="?" \
+                 icon.width=30 \
+                 icon.align=center \
+                 icon.highlight_color=0xFFFFFFFF \
+                 label.drawing=off \
+                 script="$HOME/.config/sketchybar/scripts/update_current_space.sh" \
+
+# consolidate space numbers and add a background
+sketchybar --add bracket space_circle current_space                   \
+           --set    space_circle background.color=0xEB1e1e2e            \
+                                background.corner_radius=15            \
+                                background.border_width=1              \
+                                background.border_color=$PINK          \
+                                blur_radius=2                          \
+                                background.height=30                    
+
+
+sketchybar --set space_ex.1 padding_left=-999999
+
+# update defaults
+sketchybar --default                                                \
+                     background.color=0xEB1e1e2e                    \
+                     blur_radius=2                                  \
+                     background.corner_radius=15                    \
+                     background.height=30                           \
+                     icon.padding_left=12                           \
+                     icon.padding_right=4                           \
+                     label.padding_left=4                           \
+                     label.padding_right=12                         \
+                     background.padding_left=18                     \
+                     background.border_width=1
+
+
+# ~~ center items ~~
+
+# app title
+sketchybar --add event title_change
+sketchybar --add item title center                                  \
+           --set      title label.padding_left=12                   \
+                            label="Title"                           \
+                            background.padding_left=0               \
+                            icon.padding_left=0                     \
+                            icon.padding_right=0                    \
+                            script='./scripts/title.sh'             \
+                            background.border_color=0xFFD3CDC5      \
+                            update_freq=1                           \
+                            label.max_chars=54                      # \
+                            # scroll_texts=on                         \
+                            # label.scroll_duration=200
+
+sketchybar --subscribe current_space aerospace_workspace_change
+
+
+# ~~ right items ~~
+
+# time
+sketchybar --add item time right                                    \
+           --set      time icon=󱑎                                   \
+                           icon.color=$BLUE                       \
+                           background.border_color=$BLUE          \
+                           label="$(date '+%I:%M %p')"              \
+                           script='./scripts/time.sh'               \
+                           update_freq=1
+
+# date
+sketchybar --add item date right                                    \
+           --set      date icon=󱨰                                   \
+                           icon.color=$GREEN                        \
+                           background.border_color=$GREEN            \
+                           label="$(date '+%a %b %d')"              \
+                           script='./scripts/date.sh'               \
+                           update_freq=10
+
+# weather
+sketchybar --add item weather right                                 \
+           --set      weather icon=A                                \
+                              icon.color=$ORANGE                    \
+                              background.border_color=$ORANGE       \
+                              label="--°F"                          \
+                              script='./scripts/weather.sh'         \
+                              update_freq=60
+
+# battery
+sketchybar --add item battery right                                 \
+           --set      battery icon=                                \
+                              icon.color=$RED                   \
+                              background.border_color=$RED       \
+                              label="--%"                           \
+                              script='./scripts/battery.sh'         \
+                              update_freq=20
+
+
+sketchybar --add item title_proxy right                             \
+           --set      title_proxy y_offset=100                      \
+                                  label="Title"
+
+
+# finish config
+sketchybar --hotload on
+sketchybar --update

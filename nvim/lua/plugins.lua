@@ -16,7 +16,7 @@ return require("lazy").setup({
         priority = 1000,
         config = function()
             require("solarized-osaka").setup({
-                  transparent = false, -- Enable this to disable setting the background color
+                  transparent = true, -- Enable this to disable setting the background color
             })
             vim.cmd[[colorscheme solarized-osaka]]
         end,
