@@ -104,6 +104,12 @@ return require("lazy").setup({
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             
+            vim.lsp.enable("lua-language-server")
+            vim.lsp.config("lua-language-server", {
+                cmd = {"lua-language-server"},
+                capabilities = capabilities,
+                filetypes = {"lua"},
+            })
             vim.lsp.enable("clangd")
             vim.lsp.config("clangd", {
                 filetypes = { "c", "cpp"},
