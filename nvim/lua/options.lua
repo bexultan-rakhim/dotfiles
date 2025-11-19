@@ -31,3 +31,6 @@ if vim.env.SSH_TTY then
     }
     vim.opt.clipboard:append('unnamedplus')
 end
+vim.opt.foldmethod = "expr"
+vim.opt.foldlevel = 99
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
