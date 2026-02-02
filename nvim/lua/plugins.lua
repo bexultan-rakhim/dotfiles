@@ -71,8 +71,10 @@ return require("lazy").setup({
     {
         "https://github.com/stevearc/oil.nvim",
         cmd = "Oil",
+        lazy = false,
         config = function()
             require("oil").setup({
+                default_file_explorer = true,
                 view_options = {
                     show_hidden = true,
                     is_always_hidden = function(name, _)
@@ -140,6 +142,17 @@ return require("lazy").setup({
                     },
                 },
             })
+            vim.lsp.enable("harper_ls")
+            vim.lsp.config("harper_ls", {
+                settings = {
+                    ["harper-ls"] = {
+                        linters = {
+                            SpellCheck = true,
+                            SpelledNumbers = false,
+                        }
+                    }
+                }
+            })
             if vim.fn.executable("gopls") == 1 then
                 vim.lsp.enable("gopls")
                 vim.lsp.config("gopls", {
@@ -203,7 +216,7 @@ return require("lazy").setup({
 
     -- {{{ Git
     { "https://github.com/tpope/vim-fugitive", cmd = "Git" },
-
+    { "https://github.com/sindrets/diffview.nvim"},
     {
         "https://github.com/nvim-mini/mini.diff",
         event = "VeryLazy",
