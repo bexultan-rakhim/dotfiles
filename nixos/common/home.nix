@@ -5,10 +5,15 @@
 
   programs.home-manager.enable = true;
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    BROWSER = "firefox";
+    TERMINAL = "alacritty";
+  };
+
   home.packages = with pkgs; [
     sweet-nova
     tela-icon-theme
-    # kwin-effects-geometry-change
   ];
 
   programs.plasma = {
@@ -46,15 +51,6 @@
 	wobblyWindows.enable = true;
 	minimization.animation = "magiclamp";
       };
-
-      #config.Plugins."geometry-changeEnabled" = true;
-      
-      #compositing = {
-#	enable = true;
-#	animationSpeed = 2;
-#      };
-      # tabbox.layout = "thumbnail_grid";
     };
-    # breeze.config.Style.Opacity = 50;
   };
 }

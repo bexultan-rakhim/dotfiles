@@ -72,24 +72,28 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   fonts.packages = with pkgs; [
     inter
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.hasklug
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-  };
-  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bex = {
     isNormalUser = true;
     description = "bex";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -99,8 +103,6 @@
   # Install firefox.
   programs = {
     firefox.enable = true;
-    # steam.enable = true;
-    # gamemode.enable = true;
   };
 
   # Allow unfree packages
@@ -109,13 +111,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim 
+    alacritty
     wget
     git
     vlc
     krita
     htop
     libreoffice-qt
+    pciutils
     telegram-desktop
     hunspell
     hunspellDicts.uk_UA
@@ -125,9 +128,12 @@
     ripgrep
     lua5_1
     luarocks
+    lua-language-server
     neovim
+    nixd
+    opencode
+    xclip
   ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -141,7 +147,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 3000 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
