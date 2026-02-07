@@ -134,6 +134,7 @@ return require("lazy").setup({
             vim.lsp.config("nixd", {
                 cmd = { "nixd"},
                 capabilities = capabilities,
+                filetypes = { "nix" },
                 settings = {
                     ["nixd"] = {
                         nixpkgs = {
@@ -152,6 +153,12 @@ return require("lazy").setup({
                         }
                     }
                 }
+            })
+            vim.lsp.enable("hls")
+            vim.lsp.config("hls", {
+                cmd = {"haskell-language-server-wrapper"},
+                filetypes = {'haskell', 'lhaskell', 'cabal'},
+                capabilities = capabilities,
             })
             if vim.fn.executable("gopls") == 1 then
                 vim.lsp.enable("gopls")
