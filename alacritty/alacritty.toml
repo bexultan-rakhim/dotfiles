@@ -54,6 +54,11 @@ multiplier = 1
 [selection]
 save_to_clipboard = true
 
+[keyboard]
+bindings = [
+    {key = "F", mods = "Control|Shift", action = "ToggleFullscreen"}
+]
+
 [window]
 decorations = "buttonless"
 dynamic_title = true

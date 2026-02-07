@@ -269,6 +269,7 @@ return require("lazy").setup({
         version = "*",
         config = function()
             require("toggleterm").setup({
+                shell = vim.o.shell,
                 size = 20,
                 open_mapping = [[<C-t>]],
                 direction = "float",
