@@ -16,6 +16,14 @@
     tela-icon-theme
   ];
 
+  home.file.".config/bluedevilglobalrc".text = ''
+[Adapters]
+00:1B:DC:F4:76:69_powered=true
+
+[Devices]
+connectedDevices=
+  '';
+
   programs.plasma = {
     enable = true;
     fonts = {
