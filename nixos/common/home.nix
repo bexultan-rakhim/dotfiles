@@ -26,39 +26,17 @@ connectedDevices=
 
   programs.plasma = {
     enable = true;
-    fonts = {
-      general = {
-	family = "Inter";
-      	pointSize = 11;
-      };
-      toolbar = {
-	family = "Inter";
-	pointSize = 10;
-      };
-    };
-
-    workspace.lookAndFeel = "com.github.eliverlara.sweet";
-    workspace.iconTheme = "Tela-purple";    
+    workspace.lookAndFeel = "org.kde.breezedark.desktop";
+  };
+  xsession.windowManager.i3.config = {
+    # This sets the default terminal variable
+    terminal = "alacritty";
     
-    kwin = {
-      borderlessMaximizedWindows = true;
-
-      titlebarButtons.right = [
-	"keep-above-windows"
-	"keep-below-windows"
-	"minimize"
-	"maximize"
-	"close"
-      ];
-      effects = {
-        blur = {
-	  enable = true;
-	  noiseStrength = 0;
-	  strength = 4;
-        };
-	wobblyWindows.enable = true;
-	minimization.animation = "magiclamp";
-      };
+    # This ensures the $mod+Return binding uses it
+    keybindings = let
+      modifier = "Mod1"; # Your Alt key
+    in pkgs.lib.mkOptionDefault {
+      "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
     };
   };
 }

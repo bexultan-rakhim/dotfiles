@@ -41,12 +41,36 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
+
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.setupCommands = ''
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --left-of DP-0 --auto
+  '';  
+  services.xserver.windowManager.i3 = {
+    enable = true;
+    extraPackages = with pkgs; [
+        dmenu # common for i3
+        i3status
+        i3lock
+    ];
+  };
 
+  services.picom = {
+   enable = true;
+   fade = true;
+   inactiveOpacity = 0.9;
+  settings = {
+    corner-radius = 10;
+    blur-method = "dual_kawase";
+    blur-strength = 5;
+  };
+   shadow = true;
+   backend = "glx"; # Better performance for most hardware
+  }; 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us,kz";
@@ -111,6 +135,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    feh
     alacritty
     wget
     git
@@ -134,7 +159,10 @@
     opencode
     xclip
     harper
+    baobab
+    i3status-rust
   ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
