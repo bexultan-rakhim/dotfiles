@@ -104,7 +104,7 @@
   fonts.packages = with pkgs; [
     inter
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.fira-code
     nerd-fonts.iosevka
     nerd-fonts.hasklug
