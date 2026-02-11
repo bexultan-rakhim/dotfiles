@@ -8,18 +8,12 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    plasma-manager,
     flake-utils,
     ... }@inputs:
   let
@@ -36,10 +30,7 @@
       home-manager.useUserPackages = true;
       home-manager.users."bex" = {
         imports = [
-          (import ./common/home.nix {
-            inherit pkgs;
-            plasma-manager = inputs.plasma-manager;
-          })
+	  ./common/home.nix
         ];
         home.stateVersion = "25.05";
       };

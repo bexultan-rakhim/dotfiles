@@ -1,8 +1,6 @@
-{pkgs, plasma-manager, ...}:
+{pkgs, ...}:
 
 {
-  imports = [ plasma-manager.homeModules.plasma-manager ];
-
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
@@ -17,17 +15,13 @@
   ];
 
   home.file.".config/bluedevilglobalrc".text = ''
-[Adapters]
-00:1B:DC:F4:76:69_powered=true
+    [Adapters]
+    00:1B:DC:F4:76:69_powered=true
 
-[Devices]
-connectedDevices=
+    [Devices]
+    connectedDevices=
   '';
 
-  programs.plasma = {
-    enable = true;
-    workspace.lookAndFeel = "org.kde.breezedark.desktop";
-  };
   xsession.windowManager.i3.config = {
     # This sets the default terminal variable
     terminal = "alacritty";
