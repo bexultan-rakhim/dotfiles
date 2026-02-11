@@ -27,7 +27,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.displayManager.ly.enable = true;
   # X11 settings.
   services.xserver = {
     enable = true;
@@ -37,7 +36,9 @@
       variant = ",";
       options = "grp:win_space_toggle";
     };
-   displayManager.setupCommands = ''
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeters.gtk.enable = true;
+    displayManager.setupCommands = ''
 ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --left-of DP-0 --auto
     ''; 
 
@@ -48,6 +49,9 @@ ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --
           i3status
           i3lock
       ];
+      extraSessionCommands = ''
+${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --left-of DP-0 --auto
+      '';
     };
   };
 
