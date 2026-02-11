@@ -37,10 +37,7 @@
       options = "grp:win_space_toggle";
     };
     displayManager.lightdm.enable = true;
-    displayManager.lightdm.greeters.gtk.enable = true;
-    displayManager.setupCommands = ''
-${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --left-of DP-0 --auto
-    ''; 
+    displayManager.lightdm.greeters.slick.enable = true;
 
     windowManager.i3 = {
       enable = true;
@@ -114,6 +111,7 @@ ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    nemo
     feh
     alacritty
     wget
