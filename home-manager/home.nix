@@ -14,9 +14,26 @@
   };
 
   home.packages = with pkgs; [
-    sweet-nova
-    tela-icon-theme
+    alacritty
+    bat
+    feh
+    harper
+    htop
+    lua5_1
+    luarocks
+    lua-language-server
+    neovim
+    python313
+    ripgrep
   ];
+
+  programs.zsh = { # or replace with bash if you use bash
+    enable = true;
+    shellAliases = {
+      hm-edit = "nvim ~/.config/home-manager/home.nix"; # help of use
+      hm-switch = "home-manager switch --flake ~/.config/home-manager#your-username";
+    };
+  };
 
   home.file.".config/bluedevilglobalrc".text = ''
     [Adapters]

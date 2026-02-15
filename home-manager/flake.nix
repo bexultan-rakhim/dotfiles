@@ -18,7 +18,6 @@
       inherit pkgs;
       modules = [
         ./home.nix 
-        # You can move your old /etc/nixos/common/home.nix here
       ];
     };
   };
