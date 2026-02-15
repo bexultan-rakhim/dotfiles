@@ -111,33 +111,24 @@ ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --auto --output HDMI-0 --
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    nemo
-    feh
-    alacritty
-    wget
-    git
-    vlc
-    krita
-    htop
-    libreoffice-qt
-    pciutils
-    telegram-desktop
-    hunspell
-    hunspellDicts.uk_UA
-    hunspellDicts.th_TH  
-    stdenv.cc.cc.lib
-    python313
-    ripgrep
-    lua5_1
-    luarocks
-    lua-language-server
-    neovim
-    nixd
-    opencode
-    xclip
-    harper
     baobab
+    bluetui
+    git
+    home-manager
+    hunspell # spell check for libreoffice
+    hunspellDicts.th_TH
+    hunspellDicts.uk_UA
     i3status-rust
+    krita
+    libreoffice-qt
+    nemo # file manager
+    nixd # language server for nix
+    pciutils
+    stdenv.cc.cc.lib
+    telegram-desktop
+    vlc
+    wget
+    xclip
   ];
 
   # Open ports in the firewall.
