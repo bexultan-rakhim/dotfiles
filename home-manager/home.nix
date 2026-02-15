@@ -25,6 +25,7 @@
     neovim
     python313
     ripgrep
+    ranger
   ];
 
   programs.bash = { # or replace with bash if you use bash
