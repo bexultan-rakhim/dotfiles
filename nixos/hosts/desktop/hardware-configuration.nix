@@ -12,6 +12,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "cifs" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/d9d61c28-ac6b-49fc-b544-b6d95a4094fc";
@@ -30,22 +31,6 @@
       options = [ "defaults" "noatime" "nofail"];
     };
  
-  fileSystems."/mnt/media" = 
-    { device = "//192.168.40.245/bex";
-      fsType = "cifs";
-      options = [
-	"credentials=/etc/nixos/hosts/desktop/smb-secrets"
-	"x-systemd.automount"
-	"noauto"
-	"nofail"
-	"uid=0"
- 	"gid=0"
- 	"file_mode=0777"
- 	"dir_mode=0777"
- 	"rw" # Ensure read-write option is also present
-      ]; 
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
