@@ -27,11 +27,11 @@
     ripgrep
   ];
 
-  programs.zsh = { # or replace with bash if you use bash
+  programs.bash = { # or replace with bash if you use bash
     enable = true;
     shellAliases = {
       hm-edit = "nvim ~/.config/home-manager/home.nix"; # help of use
-      hm-switch = "home-manager switch --flake ~/.config/home-manager#your-username";
+      hm-switch = "home-manager switch --flake ~/.config/home-manager#bex";
     };
   };
 
